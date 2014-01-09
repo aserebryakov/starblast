@@ -4,6 +4,8 @@ from pygame.locals import *
 class ScreenObject(pygame.sprite.Sprite):
     posx = 0
     posy = 0
+    dx   = 0
+    dy   = 0
     rect = pygame.Rect(10, 10, 10, 10)
 
     def __init__(self, imagePath):

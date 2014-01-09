@@ -11,9 +11,12 @@ class Enemy(ScreenObject):
         rand = random.Random()
         self.posy = rand.uniform(0, GameSettings.SCREENHEIGHT)
         self.posx = GameSettings.SCREENWIDTH
+        self.dx   = rand.uniform(10, 30)
+        self.dy   = rand.uniform(-10, 10)
 
     def update(self, surface):
-        self.posx -= 20
+        self.posx -= self.dx
+        self.posy -= self.dy
         ScreenObject.update(self, surface)
 
         if self.posx < 0:
