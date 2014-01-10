@@ -9,7 +9,7 @@ class Player(ScreenObject):
 
     def __init__(self):
         self.BOXCORRECTION = 20
-        self.normal_state_frames = ['ship.png']
+        self.normal_state_frames = ['ship_01.png', 'ship_02.png']
         self.normal_animation = Animation(self.normal_state_frames)
         self.posx = 50
         self.posy = GameSettings.SCREENHEIGHT / 2
