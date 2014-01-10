@@ -9,8 +9,14 @@ from Animation import Animation
 class Enemy(ScreenObject):
 
     def __init__(self):
+        self.BOXCORRECTION = 20
+        self.ANIMATION_FPS = 10
+        self.NORMAL_ANIMATION_CYCLIC = True
         self.normal_state_frames = ['asteroid.png']
-        self.normal_animation = Animation(self.normal_state_frames)
+
+        self.normal_animation = Animation(self.normal_state_frames, \
+                                          self.ANIMATION_FPS,       \
+                                          self.NORMAL_ANIMATION_CYCLIC)
 
         rand = random.Random()
         self.posy = rand.uniform(0, GameSettings.SCREENHEIGHT)
