@@ -16,7 +16,7 @@ class Game:
 
     def __init__(self):
         self.DISPLAYSURF = pygame.display.set_mode((GameSettings.SCREENWIDTH,\
-                           GameSettings. SCREENHEIGHT), 0, 32)
+                                            GameSettings. SCREENHEIGHT), 0, 32)
         self.playerGroup.add(self.player)
 
     def GenerateEnemy(self):
@@ -39,7 +39,8 @@ class Game:
             self.GenerateEnemy()
             self.playerGroup.update(self.DISPLAYSURF)
             self.enemyGroup.update(self.DISPLAYSURF)
-            pygame.sprite.spritecollide(self.player, self.enemyGroup, True)
+            pygame.sprite.spritecollide(self.player, self.enemyGroup,\
+                                        True, pygame.sprite.collide_circle)
             pygame.display.update()
             self.fpsClock.tick(GameSettings.FPS)
 
