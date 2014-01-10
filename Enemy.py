@@ -1,9 +1,7 @@
 import pygame
 import random
 from pygame.locals import *
-from GameSettings import GameSettings
-from ScreenObject import ScreenObject
-from Animation import Animation
+from Engine import *
 
 
 class Enemy(ScreenObject):
