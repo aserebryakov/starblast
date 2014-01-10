@@ -9,7 +9,7 @@ class Player(ScreenObject):
 
     def __init__(self):
         self.BOXCORRECTION = 20
-        self.ANIMATION_FPS = 10
+        self.ANIMATION_FPS = 3
         self.NORMAL_ANIMATION_CYCLIC = True
         self.normal_state_frames = ['ship_01.png', 'ship_02.png']
 
@@ -27,7 +27,7 @@ class Player(ScreenObject):
         key = pygame.key.get_pressed()
 
         if key[K_DOWN]:
-            self.posy += self.dy 
+            self.posy += self.dy
         elif key[K_UP]:
             self.posy -= self.dy
         elif key[K_RIGHT]:

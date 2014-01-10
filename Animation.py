@@ -24,10 +24,13 @@ class Animation:
             return self.frames[self.length - 1]
 
         self.gameframe += 1
-        if self.gameframe >= GameSettings.FPS:
+        if self.gameframe >= self.length*GameSettings.FPS:
             self.gameframe = 0
 
-        self.current_index = int(self.gameframe/self.fps)%self.length
+        if self.gameframe%(int(GameSettings.FPS/self.fps)) == 0:
+            self.current_index += 1
+            self.current_index %= self.length
+
         frame = self.frames[self.current_index]
 
         if self.current_index >= self.length and self.cyclic == False:
