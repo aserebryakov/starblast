@@ -11,7 +11,8 @@ class Player(ScreenObject):
         self.BOXCORRECTION = 20
         self.ANIMATION_FPS = 3
         self.NORMAL_ANIMATION_CYCLIC = True
-        self.normal_state_frames = ['ship_01.png', 'ship_02.png']
+        self.normal_state_frames = ['graphics/player/ship_01.png',\
+                                    'graphics/player/ship_02.png']
 
         self.normal_animation = Animation(self.normal_state_frames, \
                                           self.ANIMATION_FPS,       \

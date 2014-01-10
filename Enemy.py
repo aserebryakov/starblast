@@ -12,7 +12,7 @@ class Enemy(ScreenObject):
         self.BOXCORRECTION = 20
         self.ANIMATION_FPS = 10
         self.NORMAL_ANIMATION_CYCLIC = True
-        self.normal_state_frames = ['asteroid.png']
+        self.normal_state_frames = ['graphics/enemy/asteroid.png']
 
         self.normal_animation = Animation(self.normal_state_frames, \
                                           self.ANIMATION_FPS,       \
