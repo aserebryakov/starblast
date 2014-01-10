@@ -2,14 +2,19 @@ import pygame
 from pygame.locals import *
 from GameSettings import GameSettings
 from ScreenObject import ScreenObject
+from Animation import Animation
+
 
 class Player(ScreenObject):
-    BOXCORRECTION = 20
 
     def __init__(self):
-        ScreenObject.__init__(self, 'ship.png')
+        self.BOXCORRECTION = 20
+        self.normal_state_frames = ['ship.png']
+        self.normal_animation = Animation(self.normal_state_frames)
         self.posx = 50
         self.posy = GameSettings.SCREENHEIGHT / 2
+        ScreenObject.__init__(self, self.normal_animation,\
+                                    self.posx, self.posy)
         self.dx   = 10
         self.dy   = 10
 
@@ -25,7 +30,5 @@ class Player(ScreenObject):
         elif key[K_LEFT]:
             self.posx -= self.dx
 
-        self.rect.x = self.posx
-        self.rect.y = self.posy + self.BOXCORRECTION/2
-        surface.blit(self.image, (self.posx, self.posy))
+        ScreenObject.update(self, surface)
 
