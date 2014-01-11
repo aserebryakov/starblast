@@ -16,9 +16,9 @@ class ScreenObject(pygame.sprite.Sprite):
         self.rect.x = self.posx
         self.rect.y = self.posy
 
-    def update(self, surface):
+    def update(self, *arg):
         self.image  = self.animation.get_frame()
         self.rect   = self.image.get_rect()
         self.rect.x = self.posx
         self.rect.y = self.posy
-        surface.blit(self.image, (self.posx, self.posy))
+

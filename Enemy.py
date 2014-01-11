@@ -17,17 +17,17 @@ class Enemy(ScreenObject):
                                           self.NORMAL_ANIMATION_CYCLIC)
 
         rand = random.Random()
-        self.posy = rand.uniform(0, GameSettings.SCREENHEIGHT)
-        self.posx = GameSettings.SCREENWIDTH
+        self.posy  = 0
+        self.posx  = 0
         ScreenObject.__init__(self, self.normal_animation,\
                                     self.posx, self.posy)
-        self.dx   = rand.uniform(10, 30)
-        self.dy   = rand.uniform(-10, 10)
+        self.dx    = 0
+        self.dy    = 0
 
-    def update(self, surface):
+    def update(self, *args):
         self.posx -= self.dx
         self.posy -= self.dy
-        ScreenObject.update(self, surface)
+        ScreenObject.update(self)
 
         if self.posx < 0:
             self.kill()
