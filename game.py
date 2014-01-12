@@ -4,7 +4,7 @@ import pygame
 from pygame.locals import *
 from Player import Player
 from Enemy import Enemy
-from Engine import GameSettings 
+from GameSettings import GameSettings
 
 class Game:
     running = True
