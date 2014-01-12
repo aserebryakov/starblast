@@ -1,8 +1,8 @@
 import pygame
 from pygame.locals import *
-from GameSettings import GameSettings
-from ScreenObject import ScreenObject
-from Animation import Animation
+from Engine import GameSettings
+from Engine import ScreenObject
+from Engine import Animation
 
 
 class Player(ScreenObject):
