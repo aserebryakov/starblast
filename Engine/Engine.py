@@ -56,7 +56,6 @@ class Engine:
         sys.exit()
 
     def HandleCollisions(self, sprites):
-        print(len(sprites))
         for sprite in sprites:
             sprite.kill()
 
