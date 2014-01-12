@@ -55,12 +55,17 @@ class Engine:
         pygame.quit()
         sys.exit()
 
+    def HandleCollisions(self, sprites):
+        for sprite in sprites:
+            sprite.kill()
+
     def GenerateEnemy(self):
         rand = random.Random()
 
         if rand.uniform(0, 1) < GameSettings.ENEMY_CHANCE:
             # TODO: Implement enemy type chosing
-            newEnemy = copy.copy(self.enemies[0])
+            newEnemy = self.enemies[0]
+            #newEnemy = copy.copy(self.enemies[0])
             newEnemy.image = self.enemies[0].image
             newEnemy.posy = rand.uniform(0, GameSettings.SCREENHEIGHT)
             newEnemy.posx = GameSettings.SCREENWIDTH
@@ -75,9 +80,9 @@ class Engine:
 
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    self.running = False
+                    running = False
                 elif event.type == KEYDOWN and event.key == K_ESCAPE:
-                    self.running = False
+                    running = False
 
             self.GenerateEnemy()
             self.playerGroup.update(self.DISPLAYSURF)
@@ -85,9 +90,11 @@ class Engine:
             self.playerGroup.draw(self.DISPLAYSURF)
             self.enemyGroup.draw(self.DISPLAYSURF)
             #TODO: Implement correct player object chosing
-            pygame.sprite.spritecollide(self.players[0], self.enemyGroup,\
-                                        True, pygame.sprite.collide_circle)
-            pygame.display.flip()
+            collisions = pygame.sprite.spritecollide(self.players[0], self.enemyGroup,\
+                                        False, \
+                                        pygame.sprite.collide_circle)
+            self.HandleCollisions(collisions)
+            pygame.display.update()
             self.fpsClock.tick(GameSettings.FPS)
 
 
