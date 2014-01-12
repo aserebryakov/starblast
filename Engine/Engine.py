@@ -56,6 +56,7 @@ class Engine:
         sys.exit()
 
     def HandleCollisions(self, sprites):
+        print(len(sprites))
         for sprite in sprites:
             sprite.kill()
 
@@ -64,8 +65,11 @@ class Engine:
 
         if rand.uniform(0, 1) < GameSettings.ENEMY_CHANCE:
             # TODO: Implement enemy type chosing
-            newEnemy = self.enemies[0]
-            #newEnemy = copy.copy(self.enemies[0])
+            # NOTE: Looks like a workaround
+            newEnemy = copy.deepcopy(self.enemies[0])
+            newEnemy.__init__()
+
+            # Initialize new parameters
             newEnemy.image = self.enemies[0].image
             newEnemy.posy = rand.uniform(0, GameSettings.SCREENHEIGHT)
             newEnemy.posx = GameSettings.SCREENWIDTH
