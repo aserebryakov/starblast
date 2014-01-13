@@ -14,22 +14,28 @@ class Engine:
         self.playerGroup = pygame.sprite.Group()
         self.enemyGroup  = pygame.sprite.Group()
         self.fpsClock    = pygame.time.Clock()
+        self.playerTypes = []
         self.players     = []
-        self.enemies     = []
+        self.enemyTypes  = []
         self.bullets     = []
         self.background  = None
         self.splash      = None
         self.start_screen= None
         self.end_screen  = None
 
-    def AddPlayer(self, player):
-        assert isinstance(player, ScreenObject)
-        self.players.append(player)
-        self.playerGroup.add(player)
+    def RegisterPlayerType(self, player):
+        assert issubclass(player, ScreenObject)
+        self.playerTypes.append(player)
 
-    def AddEnemy(self, enemy):
-        assert isinstance(enemy, ScreenObject)
-        self.enemies.append(enemy)
+    def RegisterEnemyType(self, enemy):
+        assert issubclass(enemy, ScreenObject)
+        self.enemyTypes.append(enemy)
+
+    def CreatePlayers(self):
+        for playerType in self.playerTypes:
+            player = playerType()
+            self.players.append(player)
+            self.playerGroup.add(player)
 
     def SetBackground(self, background):
         self.background = pygame.Surface(self.DISPLAYSURF.get_size(),\
@@ -65,11 +71,9 @@ class Engine:
         if rand.uniform(0, 1) < GameSettings.ENEMY_CHANCE:
             # TODO: Implement enemy type chosing
             # NOTE: Looks like a workaround
-            newEnemy = copy.deepcopy(self.enemies[0])
-            newEnemy.__init__()
+            newEnemy = self.enemyTypes[0]() 
 
             # Initialize new parameters
-            newEnemy.image = self.enemies[0].image
             newEnemy.posy = rand.uniform(0, GameSettings.SCREENHEIGHT)
             newEnemy.posx = GameSettings.SCREENWIDTH
             newEnemy.dx   = rand.uniform(10, 30)
@@ -92,11 +96,12 @@ class Engine:
             self.enemyGroup.update(self.DISPLAYSURF)
             self.playerGroup.draw(self.DISPLAYSURF)
             self.enemyGroup.draw(self.DISPLAYSURF)
-            #TODO: Implement correct player object chosing
-            collisions = pygame.sprite.spritecollide(self.players[0], self.enemyGroup,\
+
+            for player in self.players:
+                collisions = pygame.sprite.spritecollide(player, self.enemyGroup,\
                                         False, \
                                         pygame.sprite.collide_circle)
-            self.HandleCollisions(collisions)
+                self.HandleCollisions(collisions)
             pygame.display.update()
             self.fpsClock.tick(GameSettings.FPS)
 
@@ -104,6 +109,7 @@ class Engine:
     def RunGame(self):
         self.ShowSplash()
         self.ShowStartScreen()
+        self.CreatePlayers()
         self.GameLoop()
         self.ShowEndScreen()
 

@@ -12,8 +12,8 @@ class Game:
         # Stub implementation till Background class
         # will be implemented
         self.engine.SetBackground(None)
-        self.engine.AddPlayer(Player())
-        self.engine.AddEnemy(Enemy())
+        self.engine.RegisterPlayerType(Player)
+        self.engine.RegisterEnemyType(Enemy)
 
     def Run(self):
         self.engine.RunGame()
