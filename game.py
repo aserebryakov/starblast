@@ -14,8 +14,8 @@ class Game:
         # will be implemented
         self.engine.SetSplash(Splash())
         self.engine.SetBackground(None)
-        self.engine.AddPlayer(Player())
-        self.engine.AddEnemy(Enemy())
+        self.engine.RegisterPlayerType(Player)
+        self.engine.RegisterEnemyType(Enemy)
 
     def Run(self):
         self.engine.RunGame()
