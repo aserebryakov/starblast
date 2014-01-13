@@ -1,6 +1,7 @@
 import sys
 import random
 import pygame
+import time
 import copy
 from pygame.locals import *
 from ScreenObject import ScreenObject
@@ -37,7 +38,7 @@ class Engine:
         self.background.fill(GameSettings.BACKGROUND_COLOR)
 
     def SetSplash(self, splash):
-        pass
+        self.splash = splash
 
     def SetStartScreen(self, splash):
         pass
@@ -46,7 +47,8 @@ class Engine:
         pass
 
     def ShowSplash(self):
-        pass
+        self.DISPLAYSURF.blit(self.splash, (0, 0))
+        time.sleep(self.splash.splashTime)
 
     def ShowStartScreen(self):
         pass

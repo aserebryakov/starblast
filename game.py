@@ -2,6 +2,7 @@ import sys
 import random
 import pygame
 from pygame.locals import *
+from Splash import Splash
 from Player import Player
 from Enemy import Enemy
 from Engine import Engine
@@ -11,6 +12,7 @@ class Game:
         self.engine = Engine()
         # Stub implementation till Background class
         # will be implemented
+        self.engine.SetSplash(Splash())
         self.engine.SetBackground(None)
         self.engine.AddPlayer(Player())
         self.engine.AddEnemy(Enemy())
