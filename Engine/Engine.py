@@ -53,7 +53,8 @@ class Engine:
         pass
 
     def ShowSplash(self):
-        self.DISPLAYSURF.blit(self.splash, (0, 0))
+        self.DISPLAYSURF.blit(self.splash.surf, (0, 0))
+        pygame.display.update()
         time.sleep(self.splash.splashTime)
 
     def ShowStartScreen(self):
